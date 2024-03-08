@@ -1,5 +1,4 @@
 <?php
-
 // Verificar si se recibieron datos del formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Incluir la clase DB
@@ -18,7 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Verificar si el registro fue exitoso
     if ($registroExitoso) {
-        echo 'Registro exitoso. ¡Bienvenido!';
+        // Redirigir al usuario al índice
+        header("Location: ../index.php");
+        exit;
     } else {
         echo 'Error en el registro. Por favor, intenta nuevamente.';
     }
@@ -27,3 +28,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: ../register.php");
     exit;
 }
+?>
