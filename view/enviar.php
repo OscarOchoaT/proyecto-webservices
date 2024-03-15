@@ -55,8 +55,8 @@ $saldo = $db->consultarSaldo($numeroCuenta);
         </div>
         <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="enviar.php">Enviar Fondos</a></li>
+                <li><a href="dashboard.php">Inicio</a></li>
+                <li><a href="#">Enviar Fondos</a></li>
                 <li><a href="agregar.php">Añadir Fondos</a></li>
                 <li><a href="retirar.php">Retirar Fondos</a></li>
                 <li><a class="uk-button uk-button-danger" href="../controllers/logout.php">Cerrar sesión</a></li>
@@ -66,11 +66,26 @@ $saldo = $db->consultarSaldo($numeroCuenta);
 </div>
 
 <!-- Contenido principal -->
-<div class="content">
-    <h1 class="uk-heading-medium">Bienvenido! Sr. <?php echo $usuario ?></h1>
-    <p>Saldo de Cuenta: <?php echo $saldo ?></p>
-    <p>Numero de Cuenta: <?php echo $numeroCuenta ?></p>
-    <p>.</p>
+<div class="uk-container uk-margin-large-top">
+    <h1 class="uk-heading-medium">Enviar Fondos</h1>
+    <form class="uk-form-stacked" action="../controllers/enviar.php" method="POST">
+        <div class="uk-margin">
+            <label class="uk-form-label" for="numerodecuenta_destino">Número de Cuenta Destino:</label>
+            <div class="uk-form-controls">
+                <input class="uk-input" id="numerodecuenta_destino" name="numerodecuenta_destino" type="text" placeholder="Número de Cuenta Destino" required>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label" for="monto">Monto a Enviar:</label>
+            <div class="uk-form-controls">
+                <input class="uk-input" id="monto" name="monto" type="number" step="0.01" placeholder="Monto" required>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <button class="uk-button uk-button-primary" type="submit">Enviar Fondos</button>
+        </div>
+        <input type="hidden" name="numerodecuenta_origen" value="<?php echo $numeroCuenta; ?>">
+    </form>
 </div>
 
 <!-- UIkit JS -->
@@ -78,3 +93,5 @@ $saldo = $db->consultarSaldo($numeroCuenta);
 <script src="../uikit/js/uikit-icons.min.js"></script>
 </body>
 </html>
+
+
